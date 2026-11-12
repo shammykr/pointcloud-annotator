@@ -1,0 +1,12 @@
+.viewport { position: relative; flex: 1; min-width: 0; height: 100%; }
+.host { position: absolute; inset: 0; }
+.host canvas { display: block; }
+.hud {
+  position: absolute; top: 10px; left: 10px;
+  display: flex; gap: 12px;
+  padding: 5px 10px; border-radius: 6px;
+  background: rgba(14, 17, 22, 0.75); border: 1px solid var(--border);
+  font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted);
+  pointer-events: none;
+}
+.hud > span:first-child { color: #7ee787; min-width: 48px; }
