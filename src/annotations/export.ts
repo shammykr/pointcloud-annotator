@@ -13,7 +13,7 @@ export function buildExport(annotations: Annotation[], labels: LabelClass[], poi
     cameras: [
       {
         name: SENSOR_CAMERA.name,
-        intrinsics: sensorIntrinsics(),
+        intrinsics: Object.fromEntries(Object.entries(sensorIntrinsics()).map(([k, v]) => [k, r3(v)])),
         extrinsics: {
           position: SENSOR_CAMERA.position.toArray().map(r3),
           forward: SENSOR_CAMERA.forward.toArray(),
