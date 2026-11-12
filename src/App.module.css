@@ -1,0 +1,9 @@
+.app { display: flex; height: 100%; }
+.main { position: relative; flex: 1; min-width: 0; display: flex; }
+.selection {
+  position: absolute; top: 10px; right: 12px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px; border-radius: 6px;
+  background: rgba(14, 17, 22, 0.8); border: 1px solid var(--border); font-size: 12px;
+}
+.selection i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }

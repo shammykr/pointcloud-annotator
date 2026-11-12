@@ -1,0 +1,43 @@
+.sidebar {
+  width: 280px; flex-shrink: 0; height: 100%;
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 14px 12px; overflow-y: auto;
+  background: var(--panel); border-right: 1px solid var(--border);
+}
+.title { font-size: 15px; margin: 0 4px; font-weight: 600; }
+.sidebar h2 {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); margin: 0 4px 6px; font-weight: 600;
+}
+.row {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 8px; margin-bottom: 2px;
+  background: none; border: 1px solid transparent; border-radius: 6px; cursor: pointer; text-align: left;
+}
+.row:hover { background: var(--panel-2); }
+.active { background: var(--panel-2); border-color: var(--accent) !important; }
+.label { display: flex; align-items: center; gap: 8px; }
+.label em { font-style: normal; color: var(--muted); font-size: 11px; }
+.swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; flex-shrink: 0; }
+.grow { flex: 1; min-height: 120px; display: flex; flex-direction: column; }
+.list { flex: 1; overflow-y: auto; }
+.empty { color: var(--muted); margin: 4px; font-size: 12px; }
+.item {
+  display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px;
+  border: 1px solid transparent; cursor: pointer; font-size: 12px;
+}
+.item:hover { background: var(--panel-2); }
+.itemText { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.del { background: none; border: none; color: var(--muted); cursor: pointer; padding: 0 2px; }
+.del:hover { color: #ff6b6b; }
+.buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.buttons button {
+  padding: 7px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel-2); cursor: pointer;
+}
+.buttons button:disabled { opacity: 0.4; cursor: default; }
+.buttons .primary { grid-column: span 2; background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.shortcuts summary { cursor: pointer; color: var(--muted); font-size: 12px; margin: 0 4px; }
+.shortcuts dl { margin: 8px 4px 0; font-size: 12px; }
+.shortcuts dl > div { display: flex; gap: 8px; margin-bottom: 4px; }
+.shortcuts dt { width: 110px; flex-shrink: 0; }
+.shortcuts dd { margin: 0; color: var(--muted); }

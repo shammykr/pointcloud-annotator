@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Viewer, type ViewerCallbacks } from '../scene/Viewer';
 import { loadDemoPointCloud } from '../data/loadPointCloud';
 import styles from './Viewport.module.css';
@@ -6,17 +6,17 @@ import styles from './Viewport.module.css';
 interface Props {
   callbacks: ViewerCallbacks;
   onReady(viewer: Viewer): void;
+  onLoaded(cloud: { positions: Float32Array; count: number }): void;
 }
 
 const DEMO_POINTS = 500_000;
 
 /** Hosts the THREE.js canvas, loads the demo cloud and shows a live FPS meter. */
-export const Viewport = forwardRef<Viewer | null, Props>(function Viewport({ callbacks, onReady }, ref) {
+export function Viewport({ callbacks, onReady, onLoaded }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const fpsRef = useRef<HTMLSpanElement>(null);
   const [viewer, setViewer] = useState<Viewer | null>(null);
   const [status, setStatus] = useState('Generating 500K-point LiDAR scene…');
-  useImperativeHandle(ref, () => viewer as Viewer, [viewer]);
 
   useEffect(() => {
     const v = new Viewer(hostRef.current!, callbacks);
@@ -28,6 +28,7 @@ export const Viewport = forwardRef<Viewer | null, Props>(function Viewport({ cal
     loadDemoPointCloud(DEMO_POINTS).then((cloud) => {
       if (cancelled) return;
       v.setPointCloud(cloud.positions, cloud.colors);
+      onLoaded({ positions: cloud.positions, count: cloud.count });
       setStatus(`${cloud.count.toLocaleString()} points · generated in ${cloud.generationMs.toFixed(0)} ms`);
       (window as unknown as { __pointsLoaded?: boolean }).__pointsLoaded = true;
     });
@@ -51,4 +52,4 @@ export const Viewport = forwardRef<Viewer | null, Props>(function Viewport({ cal
       </div>
     </div>
   );
-});
+}
